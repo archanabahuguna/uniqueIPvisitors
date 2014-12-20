@@ -4,8 +4,10 @@ class redisQ(object):
     """This class defines operations with redis queue which is used
     to store all remote ip addresses sniffed from requests"""
 
-    def __init__(self, conn, qname):
+    def __init__(self, conn, qname=None):
         self.conn = conn
+        if qname is None:
+            qname = "redis:Q"
         self.queue = qname
 
     def push(self, ipaddr):
@@ -26,6 +28,6 @@ class redisHash(object):
     def set(ipaddr):
         return self.rconnd.setnx(ipaddr, 'Exists')
 
-    def get():
-        return self.rconnd.get()
+    def get(remoteip):
+        return self.rconnd.get(remoteip)
 

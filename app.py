@@ -4,6 +4,11 @@ import redisOp
 
 if __name__ == '__main__':
 
+    redisqueue = redisQ(rconnQ)
+    redishash = redisHash(rconnD)
+
+    remote_ipaddr=[]
+
     for x in xrange(count):
         first_no = random.randint(0, 255) 
         second_no = random.randint(0, 255) 
@@ -11,5 +16,5 @@ if __name__ == '__main__':
         fourth_no = random.randint(0, 255)
         remote_ipaddr.append(first_no, second_no, third_no, fourth_no)
 
-    redisQ = redisQ(rconnQ)
-    redisH = redisHash(rconnD)
+        redisqueue.push(remote_ipaddr)
+

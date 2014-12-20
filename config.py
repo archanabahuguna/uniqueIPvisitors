@@ -1,7 +1,9 @@
 from redis import Redis
 
 #Connection handle to redis server for Redis queue for dumping all IPs
-rconnQ = redis.Redis('192.0.33.10',6379)
+QPOOL = redis.ConnectionPool(host='192.168.33.10', port=6379, db=0)
+rconnQ = redis.Redis(connection_pool=QPOOL)
 
 #Connection handle to redis server for Redis hash that maintains unique IPs
-rconnH = redis.Redis('192.0.33.10',6379)
+HPOOL = redis.ConnectionPool(host='192.168.33.10', port=6379, db=0)
+rconnH = redis.Redis(connection_pool=HPOOL)
