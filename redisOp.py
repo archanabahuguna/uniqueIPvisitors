@@ -13,8 +13,8 @@ class redisQ(object):
     def push(self, ipaddr):
         return self.conn.lpush(self.queue,ipaddr)
 
-    def pop():
-        return rpop(self.queue)
+    def pop(self):
+        return self.conn.rpop(self.queue)
 
 
 class redisHash(object):
@@ -25,9 +25,9 @@ class redisHash(object):
     def __init__(self, conn):
         self.conn = conn
 
-    def set(ipaddr):
-        return self.rconnd.setnx(ipaddr, 'Exists')
+    def set(self, ipaddr):
+        return self.conn.setnx(ipaddr, 'Exists')
 
-    def get(remoteip):
-        return self.rconnd.get(remoteip)
+    def get(self, remoteip):
+        return self.conn.get(remoteip)
 
