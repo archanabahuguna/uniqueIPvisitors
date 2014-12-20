@@ -3,6 +3,8 @@ uniqueIPvisitors
 
 Code for keeping a count for no of unique visitors to a website within a given timeframe.
 
+Packages/OS etc: Redis, Linux, Python
+
 Design: (Not final) A module (say app.py) provides IP addresses for every request within a given timeframe. A Redis queue is used to store these IPs temporarily and a Redis dictinoary is used to store unique IP addresses. The app.py module pushes all IPs from requests to Redis Queue, while workers pop the IPs and push to Redis dict unique IPs (the uniqueness is taken care of by the hashing operation of redis dict itself and the setnx operation)
 
 Files:
@@ -25,3 +27,6 @@ worker.py-
 admin.py-
         checks if given IP has visited the website in the given timeframe
         May also get list of all IPs from file (logged by worker) if needed
+
+Test:
+       python app.py to push IPs in redis queue, python worker.py to push unique ips in redis dict, python worker.py to test whether a given ip visited the website.
